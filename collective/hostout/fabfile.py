@@ -279,7 +279,11 @@ def postdeploy():
 
     with cd(api.env.path):
         for cmd in hostout.getPostCommands():
-            api.sudo('sh -c "%s"'%cmd)
+            #api.sudo('sh -c "%s"'%cmd)
+            try:
+                api.run(cmd)
+            except:
+                pass  # ignore postdeploy errors
 
 
 def bootstrap():
