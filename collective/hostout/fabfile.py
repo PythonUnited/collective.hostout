@@ -253,7 +253,8 @@ def buildout(*args):
         api.run('%s bin/buildout -c %s %s' % (proxy_cmd(), filename, ' '.join(args)))
 
         # Update the var dir permissions to add group write
-        api.run("find var -exec chmod g+w {} \; || true")
+        # HUUB: The chmod is not necessary, and makes it very slow
+        #api.run("find var -exec chmod g+w {} \; || true")
 
 def sudobuildout(*args):
     hostout = api.env.get('hostout')
